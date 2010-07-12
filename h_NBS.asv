@@ -2,7 +2,6 @@ function varargout = h_NBS(varargin)
 % H_NBS M-file for h_NBS.fig
 %      H_NBS, by itself, creates a new H_NBS or raises the existing
 %      singleton*.
-%      TEST GIT 1
 %
 %      H = H_NBS returns the handle to a new H_NBS or the handle to
 %      the existing singleton*.
@@ -26,7 +25,7 @@ function varargout = h_NBS(varargin)
 
 
 %
-% Last Modified by GUIDE v2.5 23-May-2010 18:55:24
+% Last Modified by GUIDE v2.5 10-Jul-2010 11:35:41
 %
 
 % Begin initialization code - DO NOT EDIT
@@ -1730,22 +1729,23 @@ post = 200;
 targetsamplerate = 1000; % supports resampling
 dtrnd = 0;
 
-%biosig
-addpath(fullfile(fileparts(which('h_NBS')),'h_EMG'))
-pth = fullfile(fileparts(which('h_EMG')), 'biosig4octmat-2.11');
-addpath(pth)
-addpath(fileparts(which('h_EMG')))
-addpath(genpath(fullfile(pth,'biosig')))
-%addpath(genpath(fullfile(pth,'NaN')))
-addpath(genpath(fullfile(pth,'tsa')))
-addpath(genpath(fullfile(pth,'xmltree')))
-% P = fileparts(fileparts(which('biosigVersion')));
-pwd = cd;
-cd(fullfile(pth,'biosig'))
-install
-cd(pwd)
+% %biosig
+% addpath(fileparts(which('h_EMG')))
+% pth = fullfile(fileparts(which('h_EMG')), 'biosig4octmat-2.11');
+% addpath(pth)
+% addpath(genpath(fullfile(pth,'biosig')))
+% addpath(genpath(fullfile(pth,'tsa')))
+% addpath(genpath(fullfile(pth,'xmltree')))
+% % P = fileparts(fileparts(which('biosigVersion')));
+% pwd = cd;
+% cd(fullfile(pth,'biosig'))
+% install
+% rmpath(genpath(fullfile(pth,'NaN')))
+% clc
+% cd(pwd)
 
 subjs = get(handles.popupmenu1,'str');
+if isstr(subjs); tmp = subjs; clear subjs; subjs{1} = tmp; end
 val = get(handles.popupmenu1,'val');
 P = strrep(which(subjs{val}),'.xlsx','');
 P = strrep(P,'auto_','');
@@ -2572,4 +2572,4 @@ for subj = subjind %subj, session, condition
                 title('correlations matrix')
                 ind = 3+ size(Ptrns,2);
                 set(gca, 'xticklabel',str(4:ind),'xtick',[1:ind])
-                set(gca
+ 
